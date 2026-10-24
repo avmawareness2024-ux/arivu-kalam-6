@@ -1593,3 +1593,285 @@ body.dark-mode .verification-note {
   border-color: #5a4a00;
   color: #e0c060;
 }
+
+/* ============================================================
+   TUITION TEACHER & COMMUNITY DISCUSSION STYLES
+   ============================================================ */
+
+/* Top bar User Profile Pill */
+.user-profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--surface-card);
+  border: 1.5px solid var(--neutral-border-light);
+  border-radius: var(--rounded-full);
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.user-profile-pill:hover {
+  border-color: var(--primary);
+  background: var(--primary-bg);
+}
+body.dark-mode .user-profile-pill {
+  background: var(--surface-card);
+  border-color: var(--neutral-border);
+}
+
+/* Homework Banner on Student Home */
+.homework-card {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border: 2px solid #fdba74;
+  border-radius: var(--rounded-lg);
+  padding: 1rem;
+  margin: 0.75rem 0;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+body.dark-mode .homework-card {
+  background: linear-gradient(135deg, #2d1804 0%, #3d2105 100%);
+  border-color: #7c2d12;
+}
+.homework-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--tertiary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--rounded-full);
+  margin-bottom: 0.4rem;
+}
+
+/* Teacher Dashboard Tabs */
+.teacher-tabs {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  scrollbar-width: none;
+}
+.teacher-tabs::-webkit-scrollbar { display: none; }
+.teacher-tab-btn {
+  white-space: nowrap;
+  padding: 0.5rem 0.85rem;
+  background: var(--surface-card);
+  border: 1.5px solid var(--neutral-border-light);
+  border-radius: var(--rounded-full);
+  font-family: var(--font-tamil);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--neutral);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.teacher-tab-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 2px 6px rgba(27,86,211,0.25);
+}
+body.dark-mode .teacher-tab-btn {
+  background: var(--surface-card);
+  border-color: var(--neutral-border);
+  color: var(--neutral-dark);
+}
+body.dark-mode .teacher-tab-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* Student Management Cards */
+.student-manage-card {
+  background: var(--surface-card);
+  border: 1.5px solid var(--neutral-border-light);
+  border-radius: var(--rounded-lg);
+  padding: 0.9rem;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s ease;
+}
+body.dark-mode .student-manage-card {
+  background: var(--surface-card);
+  border-color: var(--neutral-border);
+}
+.student-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.student-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--primary-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 2px solid white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.student-info { flex: 1; }
+.student-name-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--neutral-dark);
+}
+.student-grade-sub {
+  font-size: 0.75rem;
+  color: var(--neutral-light);
+}
+.student-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  background: var(--surface);
+  border-radius: var(--rounded-md);
+  padding: 0.5rem;
+  margin: 0.6rem 0;
+  text-align: center;
+}
+body.dark-mode .student-metrics {
+  background: #151824;
+}
+.student-actions-row {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+/* Discussion Forum */
+.discussion-card {
+  background: var(--surface-card);
+  border: 1.5px solid var(--neutral-border-light);
+  border-radius: var(--rounded-lg);
+  padding: 1rem;
+  margin-bottom: 0.85rem;
+  box-shadow: var(--shadow-card);
+}
+body.dark-mode .discussion-card {
+  background: var(--surface-card);
+  border-color: var(--neutral-border);
+}
+.discussion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.discussion-author-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.author-badge-teacher {
+  background: #fef08a;
+  color: #854d0e;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--rounded-full);
+}
+.author-badge-student {
+  background: var(--primary-bg);
+  color: var(--primary);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--rounded-full);
+}
+.discussion-tag {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--rounded-sm);
+}
+body.dark-mode .discussion-tag {
+  background: #242938;
+  color: #94a3b8;
+}
+.discussion-content-text {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0.5rem 0;
+  color: var(--neutral-dark);
+}
+.discussion-replies-list {
+  background: var(--surface);
+  border-radius: var(--rounded-md);
+  padding: 0.6rem;
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+body.dark-mode .discussion-replies-list {
+  background: #141722;
+}
+.reply-bubble {
+  background: var(--surface-card);
+  border: 1px solid var(--neutral-border-light);
+  border-radius: var(--rounded-md);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.82rem;
+}
+body.dark-mode .reply-bubble {
+  background: var(--surface-card);
+  border-color: var(--neutral-border);
+}
+.reply-bubble.teacher-reply {
+  border-left: 3.5px solid var(--gold);
+  background: #fffbeb;
+}
+body.dark-mode .reply-bubble.teacher-reply {
+  background: #26200a;
+}
+.reply-input-row {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+/* User Selection Modal Grid */
+.user-select-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+.user-select-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.85rem 0.5rem;
+  border: 2px solid var(--neutral-border-light);
+  border-radius: var(--rounded-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  background: var(--surface-card);
+}
+.user-select-item:hover, .user-select-item.selected {
+  border-color: var(--primary);
+  background: var(--primary-bg);
+  transform: translateY(-2px);
+}
+body.dark-mode .user-select-item {
+  background: var(--surface-card);
+  border-color: var(--neutral-border);
+}
+body.dark-mode .user-select-item.selected {
+  background: var(--primary-bg);
+}

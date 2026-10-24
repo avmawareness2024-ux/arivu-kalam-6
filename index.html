@@ -20,13 +20,16 @@
     <div class="top-bar" id="topBar">
       <div class="top-bar-left">
         <div class="mascot-mini">🦉</div>
-        <span style="font-weight:700;font-size:0.85rem">அ...</span>
-        <span class="grade-badge">வகுப்பு 6</span>
+        <div class="user-profile-pill" id="userPill" onclick="openLoginModal()" title="பயனர் மாற்று / உள்நுழைவு">
+          <span id="currentAvatar">👦</span>
+          <span id="currentUserName">இனியன்</span> ▾
+        </div>
+        <span class="grade-badge" id="currentUserGrade">6A</span>
       </div>
       <div class="top-bar-stats">
         <div class="stat-chip streak">🔥 <span id="topStreak">0</span> நாள்</div>
         <div class="stat-chip points">⭐ <span id="topPoints">0</span></div>
-        <button class="avatar-btn" id="avatarBtn" aria-label="அமைப்புகள்">👤</button>
+        <button class="avatar-btn" id="avatarBtn" onclick="navigateTo('settings')" aria-label="அமைப்புகள்">⚙️</button>
       </div>
     </div>
 
@@ -34,10 +37,21 @@
     <div class="screen active" id="screenHome">
       <!-- Welcome Card -->
       <div class="welcome-card">
-        <div class="welcome-subtitle">⭐ வகுப்பு 6 – பருவம் 1</div>
-        <div class="welcome-name">வணக்கம் இனியன்! 👋</div>
-        <div class="welcome-goal">இன்றைய இலக்கு: <strong>கணித பின்னம் அறிவோம்</strong></div>
+        <div class="welcome-subtitle">⭐ வகுப்பு 6 – டியூஷன் கற்றல் களம்</div>
+        <div class="welcome-name" id="homeWelcomeName">வணக்கம் மாணவர்! 👋</div>
+        <div class="welcome-goal">இன்றைய இலக்கு: <strong id="homeGoalText">கணித பின்னம் அறிவோம்</strong></div>
         <div class="welcome-mascot">🦉</div>
+      </div>
+
+      <!-- Teacher Homework Announcement Banner -->
+      <div class="homework-card" id="homeHomeworkCard">
+        <div class="homework-badge">📌 ஆசிரியர் வீட்டுப்பாடம் (Homework)</div>
+        <div style="font-weight:700;font-size:0.95rem;color:var(--tertiary-dark)" id="hwTitle">கணிதம்: அலகு 1 பின்னங்கள் பயிற்சி செய்</div>
+        <div style="font-size:0.8rem;color:var(--neutral);margin:0.25rem 0" id="hwDesc">அனைத்து 5 வினாக்களுக்கும் விடையளித்து 50 புள்ளிகள் பெறுங்கள்.</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.6rem;flex-wrap:wrap;gap:0.4rem">
+          <span style="font-size:0.75rem;font-weight:600;color:var(--tertiary)">⏰ காலக்கெடு: <span id="hwDueDate">இன்று மாலை 6:00</span></span>
+          <button class="btn-small" style="background:var(--tertiary);color:white" onclick="startHomeworkQuiz()">வீட்டுப்பாடம் தொடங்கு ➜</button>
+        </div>
       </div>
 
       <!-- Stats Grid -->
@@ -70,6 +84,26 @@
         <button class="btn-secondary" id="dailyChallengeBtn" style="width:100%">
           🎲 வினாடி வினா ஆரம்பி ➜
         </button>
+      </div>
+
+      <!-- Tuition Discussion Forum Card -->
+      <div style="margin:0.75rem 0;padding:0.9rem;background:var(--surface-card);border:1.5px solid var(--neutral-border-light);border-radius:var(--rounded-lg);box-shadow:var(--shadow-card);display:flex;align-items:center;gap:0.75rem">
+        <span style="font-size:1.6rem">💬</span>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:0.9rem">சந்தேக தீர்வு அரங்கம்</div>
+          <div style="font-size:0.75rem;color:var(--neutral-light)">நண்பர்களுடனும் ஆசிரியருடனும் உரையாடுங்கள்</div>
+        </div>
+        <button class="btn-small" style="background:var(--primary);color:white" onclick="navigateTo('discussion')">அரங்கம் செல் ➜</button>
+      </div>
+
+      <!-- WhatsApp Share Progress to Teacher -->
+      <div style="margin:0.75rem 0;padding:0.8rem;background:#ecfdf5;border:1.5px solid #a7f3d0;border-radius:var(--rounded-lg);display:flex;align-items:center;gap:0.6rem">
+        <span style="font-size:1.4rem">📲</span>
+        <div style="flex:1;font-size:0.8rem;color:#065f46">
+          <strong>ஆசிரியருக்கு முன்னேற்றத்தை அனுப்பு:</strong><br>
+          இன்றைய மதிப்பெண்ணை WhatsApp-ல் அனுப்பலாம்.
+        </div>
+        <button class="btn-small" style="background:#059669;color:white" onclick="sendProgressToTeacherWhatsApp()">அனுப்பு ➜</button>
       </div>
 
       <!-- Revision Suggestion -->
@@ -183,6 +217,38 @@
       </div>
     </div>
 
+    <!-- ===== SCREEN: DISCUSSION & DOUBTS FORUM ===== -->
+    <div class="screen" id="screenDiscussion">
+      <div class="back-header">
+        <button class="back-btn" onclick="navigateTo('home')" aria-label="முகப்பு">←</button>
+        <span class="back-title">💬 சந்தேக தீர்வு அரங்கம்</span>
+      </div>
+
+      <!-- Action Card -->
+      <div style="background:linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);border:1.5px solid #bfdbfe;border-radius:var(--rounded-lg);padding:0.9rem;margin-bottom:0.75rem">
+        <div style="font-weight:700;font-size:0.9rem;color:var(--primary-dark)">💡 வகுப்பு மாணவர் அரங்கம்</div>
+        <div style="font-size:0.75rem;color:var(--neutral);margin:0.2rem 0 0.5rem">பாடச் சந்தேகங்கள், வினாக்கள் மற்றும் அனுபவங்களை உங்கள் வகுப்புத் தோழர்கள் & ஆசிரியருடன் பகிர்ந்துகொள்ளுங்கள்.</div>
+        <button class="btn-primary" style="width:100%;font-size:0.85rem;padding:0.5rem" onclick="openNewPostModal()">
+          ✏️ புதிய சந்தேகம் கேள் / அனுபவம் பகிர்
+        </button>
+      </div>
+
+      <!-- Subject Filter Pills -->
+      <div style="display:flex;gap:0.4rem;overflow-x:auto;padding-bottom:0.4rem;margin-bottom:0.75rem;scrollbar-width:none" id="discussionFilters">
+        <button class="teacher-tab-btn active" onclick="filterDiscussions('all', this)">அனைத்தும்</button>
+        <button class="teacher-tab-btn" onclick="filterDiscussions('கணிதம்', this)">📐 கணிதம்</button>
+        <button class="teacher-tab-btn" onclick="filterDiscussions('அறிவியல்', this)">🔬 அறிவியல்</button>
+        <button class="teacher-tab-btn" onclick="filterDiscussions('தமிழ்', this)">📝 தமிழ்</button>
+        <button class="teacher-tab-btn" onclick="filterDiscussions('ஆங்கிலம்', this)">🔤 ஆங்கிலம்</button>
+        <button class="teacher-tab-btn" onclick="filterDiscussions('சமூக அறிவியல்', this)">🌍 சமூக அறிவியல்</button>
+      </div>
+
+      <!-- Discussion Posts Container -->
+      <div id="discussionFeedList">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
     <!-- ===== SCREEN: PROGRESS ===== -->
     <div class="screen" id="screenProgress">
       <div class="back-header">
@@ -231,19 +297,19 @@
       </div>
     </div>
 
-    <!-- ===== SCREEN: PARENT/TEACHER ===== -->
+    <!-- ===== SCREEN: TUITION TEACHER DASHBOARD ===== -->
     <div class="screen" id="screenParent">
       <div class="back-header">
         <button class="back-btn" onclick="navigateTo('home')" aria-label="முகப்பு">←</button>
-        <span class="back-title">👨‍🏫 ஆசிரியர் / பெற்றோர்</span>
+        <span class="back-title">👩‍🏫 டியூஷன் ஆசிரியர் தளம்</span>
       </div>
 
       <!-- PIN Gate -->
       <div id="pinGate">
         <div class="lesson-content text-center">
           <div style="font-size:2.5rem;margin-bottom:0.5rem">🔒</div>
-          <h3>உள்நுழைவு சரிபார்க்கப்பட்டது</h3>
-          <p class="text-sm text-muted mt-1">ஆசிரியர் & பெற்றோர் நிர்வாக பகுதி (PIN: ••••)</p>
+          <h3>டியூஷன் ஆசிரியர் நுழைவு</h3>
+          <p class="text-sm text-muted mt-1">மாணவர்களின் கல்வி அறிக்கைகளைக் கண்காணிக்க PIN உள்ளிடவும்</p>
           <div class="pin-input-group mt-2">
             <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" data-pin="0" aria-label="PIN digit 1">
             <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" data-pin="1" aria-label="PIN digit 2">
@@ -251,59 +317,152 @@
             <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" data-pin="3" aria-label="PIN digit 4">
           </div>
           <p class="text-sm text-muted mt-1">இயல்பு PIN: 1234</p>
-          <button class="btn-primary mt-2" onclick="verifyPin()" style="max-width:200px;margin:0.5rem auto">🔓 செயலி</button>
+          <button class="btn-primary mt-2" onclick="verifyPin()" style="max-width:200px;margin:0.5rem auto">🔓 உள்நுழை</button>
           <p id="pinError" class="text-sm" style="color:var(--error);margin-top:0.5rem;display:none">❌ தவறான PIN</p>
         </div>
       </div>
 
-      <!-- Teacher Dashboard (hidden until PIN verified) -->
+      <!-- Tuition Teacher Dashboard (Active after PIN verification) -->
       <div id="teacherDashboard" style="display:none">
-        <div class="lesson-content">
-          <div style="font-size:0.8rem;color:var(--secondary);font-weight:700;margin-bottom:0.25rem">வகுப்பு 6A • மாணவர்</div>
-          <h3>இனியன் கற்றல் அறிக்கை</h3>
-          <div style="font-size:0.75rem;color:var(--neutral-light);margin-bottom:0.75rem" id="reportTimestamp"></div>
-
-          <div class="stats-grid" style="margin-bottom:0.75rem">
-            <div style="text-align:center;padding:0.5rem;background:var(--secondary-bg);border-radius:var(--rounded-md)">
-              <div style="font-weight:800;color:var(--secondary)" id="parentAccuracy">0%</div>
-              <div style="font-size:0.7rem">சரியான விடை</div>
+        
+        <!-- Teacher Profile & Live Summary -->
+        <div class="lesson-content" style="margin-bottom:0.75rem;background:linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);border:1.5px solid #c7d2fe">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem">
+            <div style="width:48px;height:48px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 2px 6px rgba(0,0,0,0.1)">👩‍🏫</div>
+            <div style="flex:1">
+              <div style="font-weight:800;font-size:1rem;color:var(--primary-dark)" id="teacherNameDisplay">செல்வி ஆசிரியர்</div>
+              <div style="font-size:0.75rem;color:var(--neutral)">6-ஆம் வகுப்பு டியூஷன் கட்டுப்பாட்டு மையம்</div>
             </div>
-            <div style="text-align:center;padding:0.5rem;background:var(--primary-bg);border-radius:var(--rounded-md)">
-              <div style="font-weight:800;color:var(--primary)" id="parentQuestions">0</div>
-              <div style="font-size:0.7rem">மொத்தம் வினாக்கள்</div>
+            <button class="btn-small" style="background:#fee2e2;color:#b91c1c" onclick="logoutTeacher()">வெளியேறு</button>
+          </div>
+
+          <!-- Class Metrics Grid -->
+          <div class="stats-grid" style="margin:0">
+            <div class="stat-card" style="padding:0.4rem;text-align:center">
+              <div class="stat-value" id="tStatStudents" style="font-size:1.2rem;color:var(--primary)">0</div>
+              <div class="stat-label">மாணவர்கள்</div>
+            </div>
+            <div class="stat-card" style="padding:0.4rem;text-align:center">
+              <div class="stat-value" id="tStatAccuracy" style="font-size:1.2rem;color:var(--secondary)">0%</div>
+              <div class="stat-label">சராசரி தேர்ச்சி</div>
+            </div>
+            <div class="stat-card" style="padding:0.4rem;text-align:center">
+              <div class="stat-value" id="tStatHomework" style="font-size:1.2rem;color:var(--tertiary)">0</div>
+              <div class="stat-label">வீட்டுப்பாடம்</div>
+            </div>
+            <div class="stat-card" style="padding:0.4rem;text-align:center">
+              <div class="stat-value" id="tStatTop" style="font-size:0.9rem;font-weight:800;color:var(--gold)">-</div>
+              <div class="stat-label">முதலிடம்</div>
             </div>
           </div>
         </div>
 
-        <!-- Subject-wise Progress -->
-        <div class="section-header">
-          <span class="section-title">பாடவாரி பலன்</span>
-        </div>
-        <div class="progress-chart" id="parentProgress"></div>
-
-        <!-- Teacher Tools -->
-        <div class="section-header mt-2">
-          <span class="section-title">🛠️ உள்ளூர் வினா வங்கி மேலாளர்</span>
+        <!-- Dashboard Sub-Tabs -->
+        <div class="teacher-tabs">
+          <button class="teacher-tab-btn active" id="tabBtnStudents" onclick="switchTeacherTab('students')">👥 மாணவர்கள்</button>
+          <button class="teacher-tab-btn" id="tabBtnCurriculum" onclick="switchTeacherTab('curriculum')">📚 பாடங்கள் & வினாக்கள்</button>
+          <button class="teacher-tab-btn" id="tabBtnHomework" onclick="switchTeacherTab('homework')">📝 வீட்டுப்பாடம்</button>
+          <button class="teacher-tab-btn" id="tabBtnBackup" onclick="switchTeacherTab('backup')">💾 காப்பு & மீட்டமை</button>
         </div>
 
-        <div class="teacher-section">
-          <div class="teacher-card" onclick="showAddQuestion()">
-            <div class="teacher-card-title">📝 புதிய வினா சேர்க்க (Add Question)</div>
-            <div class="teacher-card-desc">பாடம் தேர்வு செய்ய, பருவம் & இயல், வினா எழுதுங்கள்</div>
+        <!-- TAB 1: STUDENTS PANE -->
+        <div id="tPaneStudents">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+            <span style="font-weight:700;font-size:0.95rem">மாணவர்கள் பட்டியல்</span>
+            <button class="btn-small" style="background:var(--primary);color:white" onclick="openAddStudentModal()">➕ புதிய மாணவர் சேர்</button>
           </div>
-          <div class="teacher-card" onclick="exportJSON()">
-            <div class="teacher-card-title">📤 வினா வங்கியை JSON ஆக பதிவிறக்கு (Export JSON)</div>
-          </div>
-          <div class="teacher-card" onclick="document.getElementById('importFile').click()">
-            <div class="teacher-card-title">📥 JSON வினா வங்கியை பதிவேற்று (Import JSON)</div>
-          </div>
-          <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
-
-          <div class="teacher-card" style="border-color:var(--error)" onclick="confirmResetProgress()">
-            <div class="teacher-card-title" style="color:var(--error)">🗑️ முன்னேற்ற நிலையை மீட்டமை (Reset Progress)</div>
-            <div class="teacher-card-desc">மாணவர் இதுவரை கற்ற பதிவுகளை மீட்டமைக்கும்</div>
+          <div id="tuitionStudentsList">
+            <!-- Dynamically Rendered by JS -->
           </div>
         </div>
+
+        <!-- TAB 2: CURRICULUM CRUD PANE -->
+        <div id="tPaneCurriculum" style="display:none">
+          <div class="lesson-content" style="margin-bottom:0.75rem">
+            <div style="font-weight:700;font-size:0.9rem;margin-bottom:0.4rem">பாடம் தேர்வு செய்யவும்:</div>
+            <select id="curriculumSubjectSelect" onchange="loadCurriculumQuestions(this.value)" style="width:100%;padding:0.6rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil);font-size:0.9rem">
+              <option value="tamil">தமிழ் (Tamil)</option>
+              <option value="english">ஆங்கிலம் (English)</option>
+              <option value="mathematics">கணிதம் (Mathematics)</option>
+              <option value="science">அறிவியல் (Science)</option>
+              <option value="social-science">சமூக அறிவியல் (Social Science)</option>
+            </select>
+
+            <div style="display:flex;gap:0.5rem;margin-top:0.75rem">
+              <button class="btn-primary" style="flex:1;font-size:0.8rem;padding:0.5rem" onclick="openAddChapterModal()">➕ புதிய அலகு சேர்க்க</button>
+              <button class="btn-secondary" style="flex:1;font-size:0.8rem;padding:0.5rem" onclick="showAddQuestion()">➕ புதிய வினா சேர்க்க</button>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <span class="section-title">அலகுகள் & வினாக்கள் பட்டியல்</span>
+          </div>
+          <div id="curriculumQuestionsList">
+            <!-- Dynamically Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- TAB 3: HOMEWORK PANE -->
+        <div id="tPaneHomework" style="display:none">
+          <div class="lesson-content">
+            <h4 style="margin-bottom:0.6rem">📝 இன்றைய வீட்டுப்பாடம் அமைத்தல்</h4>
+            <div style="margin-bottom:0.6rem">
+              <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">தலைப்பு (Homework Title)</label>
+              <input type="text" id="hwInputTitle" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+            </div>
+            <div style="margin-bottom:0.6rem">
+              <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">பாடம் (Subject)</label>
+              <select id="hwInputSubject" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+                <option value="tamil">தமிழ்</option>
+                <option value="english">ஆங்கிலம்</option>
+                <option value="mathematics">கணிதம்</option>
+                <option value="science">அறிவியல்</option>
+                <option value="social-science">சமூக அறிவியல்</option>
+              </select>
+            </div>
+            <div style="margin-bottom:0.6rem">
+              <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">காலக்கெடு (Due Date / Time)</label>
+              <input type="text" id="hwInputDueDate" placeholder="உதா: இன்று மாலை 6 மணி" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+            </div>
+            <div style="margin-bottom:0.75rem">
+              <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">வழிமுறைகள் (Instructions)</label>
+              <textarea id="hwInputNotes" rows="2" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)"></textarea>
+            </div>
+            <button class="btn-primary" style="width:100%" onclick="saveHomework()">💾 வீட்டுப்பாடத்தை மாணவர்களுக்கு வெளியிடு</button>
+          </div>
+
+          <div class="section-header mt-2">
+            <span class="section-title">வீட்டுப்பாடம் முடித்தவர்கள் நிலை</span>
+          </div>
+          <div id="homeworkCompletionList" class="lesson-content">
+            <!-- Dynamically Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- TAB 4: BACKUP & DATA PANE -->
+        <div id="tPaneBackup" style="display:none">
+          <div class="teacher-section">
+            <div class="teacher-card" onclick="exportJSON()">
+              <div class="teacher-card-title">📤 மொத்த டியூஷன் தரவை JSON ஆக பதிவிறக்கு (Export All Data)</div>
+              <div class="teacher-card-desc">அனைத்து மாணவர்கள், மதிப்பெண்கள், வினாக்கள் அனைத்தும் காப்பு செய்யப்படும்</div>
+            </div>
+            <div class="teacher-card" onclick="document.getElementById('importFile').click()">
+              <div class="teacher-card-title">📥 காப்பு செய்யப்பட்ட JSON தரவை பதிவேற்று (Import Data)</div>
+              <div class="teacher-card-desc">மற்றொரு சாதனத்தில் இருந்து தரவை மீட்கலாம்</div>
+            </div>
+            <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
+
+            <div class="teacher-card" onclick="openChangePinModal()">
+              <div class="teacher-card-title">🔑 ஆசிரியர் PIN மாற்றுக (Change Teacher PIN)</div>
+              <div class="teacher-card-desc">தற்போதைய இயல்பு PIN: 1234</div>
+            </div>
+
+            <div class="teacher-card" style="border-color:var(--error)" onclick="confirmResetProgress()">
+              <div class="teacher-card-title" style="color:var(--error)">🗑️ அனைத்து மாணவர் முன்னேற்றங்களை மீட்டமை (Reset All)</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -428,21 +587,21 @@
         <span class="nav-icon">📚</span>
         <span>பாடங்கள்</span>
       </button>
+      <button class="nav-item" onclick="navigateTo('discussion')" aria-label="அரங்கம்">
+        <span class="nav-icon">💬</span>
+        <span>அரங்கம்</span>
+      </button>
       <button class="nav-item" onclick="navigateTo('tutor')" aria-label="AI ஆசிரியர்">
         <span class="nav-icon">🤖</span>
         <span>AI ஆசிரியர்</span>
       </button>
-      <button class="nav-item" onclick="navigateTo('progress')" aria-label="சாதனைகள்">
-        <span class="nav-icon">📊</span>
-        <span>சாதனைகள்</span>
-      </button>
-      <button class="nav-item" onclick="navigateTo('parent')" aria-label="பெற்றோர்">
-        <span class="nav-icon">👨‍🏫</span>
-        <span>பெற்றோர்</span>
+      <button class="nav-item" onclick="navigateTo('parent')" aria-label="டியூஷன்">
+        <span class="nav-icon">👩‍🏫</span>
+        <span>டியூஷன்</span>
       </button>
     </nav>
 
-    <!-- ===== MODALS ===== -->
+    <!-- ===== GENERAL MODAL ===== -->
     <div class="modal-overlay" id="modalOverlay">
       <div class="modal-content" id="modalContent">
         <div class="modal-icon" id="modalIcon">🎉</div>
@@ -450,6 +609,153 @@
         <div class="modal-text" id="modalText">நீங்கள் சிறப்பாக செய்தீர்கள்!</div>
         <div class="modal-actions" id="modalActions">
           <button class="btn-primary" onclick="closeModal()">சரி 👍</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== USER LOGIN / PROFILE SWITCH MODAL ===== -->
+    <div class="modal-overlay" id="loginModal">
+      <div class="modal-content" style="max-height:88vh;overflow-y:auto;text-align:left">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+          <h3 style="font-size:1.1rem">👤 யார் படிக்கிறார்கள்?</h3>
+          <button style="background:none;border:none;font-size:1.2rem;cursor:pointer" onclick="closeLoginModal()">✕</button>
+        </div>
+        <p class="text-sm text-muted">உங்கள் சுயவிவரத்தை (Profile) தேர்வு செய்து உள்நுழையவும்:</p>
+
+        <!-- Student Profiles Grid -->
+        <div class="user-select-grid" id="loginStudentsGrid">
+          <!-- Dynamically populated by JS -->
+        </div>
+
+        <!-- Student PIN Prompt (shown when student clicked) -->
+        <div id="studentPinBox" style="display:none;background:var(--surface);border:1.5px solid var(--neutral-border-light);border-radius:var(--rounded-md);padding:0.75rem;margin:0.75rem 0">
+          <div style="font-size:0.85rem;font-weight:700;margin-bottom:0.3rem" id="pinPromptName">மாணவர் PIN உள்ளிடவும்:</div>
+          <div style="display:flex;gap:0.4rem">
+            <input type="password" id="inputStudentPin" maxlength="4" placeholder="4 இலக்க PIN" style="flex:1;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-size:1rem;text-align:center">
+            <button class="btn-primary" style="padding:0.5rem 1rem" onclick="submitStudentLogin()">நுழை ➜</button>
+          </div>
+          <p id="studentPinErr" style="color:var(--error);font-size:0.75rem;margin-top:0.3rem;display:none">❌ தவறான PIN!</p>
+        </div>
+
+        <hr style="border:none;border-top:1px solid var(--neutral-border-light);margin:1rem 0">
+
+        <!-- Teacher Login Option -->
+        <div style="display:flex;justify-content:space-between;align-items:center;background:var(--primary-bg);border:1.5px solid var(--primary);border-radius:var(--rounded-md);padding:0.6rem 0.8rem">
+          <div>
+            <div style="font-weight:700;font-size:0.85rem;color:var(--primary-dark)">👩‍🏫 டியூஷன் ஆசிரியர் தளம்</div>
+            <div style="font-size:0.72rem;color:var(--neutral)">முழு வகுப்பையும் நிர்வகிக்க</div>
+          </div>
+          <button class="btn-small" style="background:var(--primary);color:white" onclick="closeLoginModal(); navigateTo('parent')">ஆசிரியர் நுழைவு ➜</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ADD STUDENT MODAL (Teacher) ===== -->
+    <div class="modal-overlay" id="addStudentModal">
+      <div class="modal-content" style="text-align:left;max-height:85vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+          <h3 style="font-size:1.1rem">➕ புதிய மாணவர் பதிவு</h3>
+          <button style="background:none;border:none;font-size:1.2rem;cursor:pointer" onclick="closeAddStudentModal()">✕</button>
+        </div>
+        <div style="margin-bottom:0.6rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">மாணவர் பெயர்</label>
+          <input type="text" id="newStuName" placeholder="உதா: இனியன்" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+        </div>
+        <div style="margin-bottom:0.6rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">வகுப்பு / பிரிவு</label>
+          <input type="text" id="newStuGrade" placeholder="வகுப்பு 6A" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+        </div>
+        <div style="margin-bottom:0.6rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">பெற்றோர் வாட்ஸ்அப் எண்</label>
+          <input type="tel" id="newStuPhone" placeholder="9876543210" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md)">
+        </div>
+        <div style="margin-bottom:0.6rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">மாணவர் 4-இலக்க PIN</label>
+          <input type="password" id="newStuPin" maxlength="4" placeholder="1234" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md)">
+        </div>
+        <div style="margin-bottom:0.85rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">அவதார் சின்னம்</label>
+          <select id="newStuAvatar" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-size:1.1rem">
+            <option value="👦">👦 பையன் 1</option>
+            <option value="👧">👧 பெண் 1</option>
+            <option value="🧑">🧑 மாணவர் 2</option>
+            <option value="👩">👩 மாணவி 2</option>
+            <option value="🦁">🦁 சிங்கம்</option>
+            <option value="🚀">🚀 ராக்கெட்</option>
+          </select>
+        </div>
+        <button class="btn-primary" style="width:100%" onclick="saveNewStudent()">💾 மாணவரைச் சேர்</button>
+      </div>
+    </div>
+
+    <!-- ===== ADD CHAPTER MODAL (Teacher) ===== -->
+    <div class="modal-overlay" id="addChapterModal">
+      <div class="modal-content" style="text-align:left">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+          <h3 style="font-size:1.1rem">➕ புதிய அலகு / பாடம் சேர்</h3>
+          <button style="background:none;border:none;font-size:1.2rem;cursor:pointer" onclick="closeAddChapterModal()">✕</button>
+        </div>
+        <div style="margin-bottom:0.6rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">பாடம் (Subject)</label>
+          <select id="newChSubject" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+            <option value="tamil">தமிழ்</option>
+            <option value="english">ஆங்கிலம்</option>
+            <option value="mathematics">கணிதம்</option>
+            <option value="science">அறிவியல்</option>
+            <option value="social-science">சமூக அறிவியல்</option>
+          </select>
+        </div>
+        <div style="margin-bottom:0.6rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">அலகு பெயர் (தமிழில்)</label>
+          <input type="text" id="newChName" placeholder="உதா: வடிவங்கள் மற்றும் அளவீடுகள்" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+        </div>
+        <div style="margin-bottom:0.6rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">அலகு பெயர் (ஆங்கிலத்தில்)</label>
+          <input type="text" id="newChNameEn" placeholder="e.g. Shapes & Measurements" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md)">
+        </div>
+        <div style="margin-bottom:0.85rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">பருவம் / பகுதி</label>
+          <input type="text" id="newChTerm" placeholder="பருவம் 1 / இயல் 4" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+        </div>
+        <button class="btn-primary" style="width:100%" onclick="saveNewChapter()">💾 அலகைச் சேர்</button>
+      </div>
+    </div>
+
+    <!-- ===== NEW DISCUSSION POST MODAL ===== -->
+    <div class="modal-overlay" id="newPostModal">
+      <div class="modal-content" style="text-align:left">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+          <h3 style="font-size:1.1rem">✏️ சந்தேகம் கேள் / அனுபவம் பகிர்</h3>
+          <button style="background:none;border:none;font-size:1.2rem;cursor:pointer" onclick="closeNewPostModal()">✕</button>
+        </div>
+        <div style="margin-bottom:0.6rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">பாடம் (Subject Tag)</label>
+          <select id="postSubjectTag" style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+            <option value="கணிதம்">📐 கணிதம்</option>
+            <option value="அறிவியல்">🔬 அறிவியல்</option>
+            <option value="தமிழ்">📝 தமிழ்</option>
+            <option value="ஆங்கிலம்">🔤 ஆங்கிலம்</option>
+            <option value="சமூக அறிவியல்">🌍 சமூக அறிவியல்</option>
+            <option value="பொது">💡 பொதுவானவை / கற்றல் அனுபவம்</option>
+          </select>
+        </div>
+        <div style="margin-bottom:0.85rem">
+          <label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.2rem">உங்கள் கேள்வி அல்லது கருத்து</label>
+          <textarea id="postContentText" rows="4" placeholder="உங்கள் சந்தேகத்தை அல்லது கற்ற அனுபவத்தை இங்கே தெளிவாக எழுதுங்கள்..." style="width:100%;padding:0.6rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil);resize:vertical"></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%" onclick="submitNewPost()">🚀 அரங்கத்தில் பதிவிடு</button>
+      </div>
+    </div>
+
+    <!-- ===== STUDENT DETAIL & REPORT MODAL ===== -->
+    <div class="modal-overlay" id="studentDetailModal">
+      <div class="modal-content" style="text-align:left;max-height:88vh;overflow-y:auto">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+          <h3 style="font-size:1.1rem" id="modalStuName">மாணவர் அறிக்கை</h3>
+          <button style="background:none;border:none;font-size:1.2rem;cursor:pointer" onclick="closeStudentDetailModal()">✕</button>
+        </div>
+        <div id="studentDetailBody">
+          <!-- Rendered by JS -->
         </div>
       </div>
     </div>
