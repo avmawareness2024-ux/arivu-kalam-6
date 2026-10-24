@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 384" width="384" height="384">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1B56D3"/>
+      <stop offset="100%" style="stop-color:#0D9658"/>
+    </linearGradient>
+    <clipPath id="rounded">
+      <rect width="384" height="384" rx="76.80000000000001" ry="76.80000000000001"/>
+    </clipPath>
+  </defs>
+  <rect width="384" height="384" rx="76.80000000000001" ry="76.80000000000001" fill="url(#bg)"/>
+  <text x="192" y="199.68" font-size="161.28" text-anchor="middle" dominant-baseline="middle">🦉</text>
+  <text x="192" y="307.20000000000005" font-size="42.24" text-anchor="middle" fill="white" font-weight="bold" font-family="sans-serif">அறிவுக் களம்</text>
+  <text x="192" y="353.28000000000003" font-size="30.72" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="sans-serif">Grade 6</text>
+</svg>

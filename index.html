@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ta" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="தமிழ்நாடு 6ஆம் வகுப்பு மாணவர்களுக்கான இலவச கற்றல் செயலி - தமிழ், ஆங்கிலம், கணிதம், அறிவியல், சமூக அறிவியல்">
+  <meta name="theme-color" content="#1B56D3">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="அறிவுக் களம்">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>📘</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <title>அறிவுக் களம் 6 — Arivu Kalam 6</title>
+</head>
+<body>
+  <div id="app">
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar" id="topBar">
+      <div class="top-bar-left">
+        <div class="mascot-mini">🦉</div>
+        <span style="font-weight:700;font-size:0.85rem">அ...</span>
+        <span class="grade-badge">வகுப்பு 6</span>
+      </div>
+      <div class="top-bar-stats">
+        <div class="stat-chip streak">🔥 <span id="topStreak">0</span> நாள்</div>
+        <div class="stat-chip points">⭐ <span id="topPoints">0</span></div>
+        <button class="avatar-btn" id="avatarBtn" aria-label="அமைப்புகள்">👤</button>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: HOME DASHBOARD ===== -->
+    <div class="screen active" id="screenHome">
+      <!-- Welcome Card -->
+      <div class="welcome-card">
+        <div class="welcome-subtitle">⭐ வகுப்பு 6 – பருவம் 1</div>
+        <div class="welcome-name">வணக்கம் இனியன்! 👋</div>
+        <div class="welcome-goal">இன்றைய இலக்கு: <strong>கணித பின்னம் அறிவோம்</strong></div>
+        <div class="welcome-mascot">🦉</div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--tertiary-bg);color:var(--tertiary)">🔥</div>
+          <div><div class="stat-value" id="homeStreak">0</div><div class="stat-label">நாள் தொடர்ச்சி</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--gold-bg);color:var(--gold)">⭐</div>
+          <div><div class="stat-value" id="homePoints">0</div><div class="stat-label">புள்ளிகள்</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--primary-bg);color:var(--primary)">📖</div>
+          <div><div class="stat-value" id="homeLessons">0</div><div class="stat-label">பாடங்கள் ...</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--purple-bg);color:var(--purple)">🏆</div>
+          <div><div class="stat-value" id="homeBadges">0</div><div class="stat-label">பதக்கம் சாதனைகள்</div></div>
+        </div>
+      </div>
+
+      <!-- Daily Challenge -->
+      <div class="daily-challenge">
+        <div class="challenge-header">
+          <span class="challenge-title">🎯 இன்றைய சவால்</span>
+          <span class="challenge-reward">+50 நாணயம் 🪙</span>
+        </div>
+        <div class="challenge-text">5 கேள்விகளுக்கு விடையளித்து 50 புள்ளிகள் வெல்லுங்கள்!</div>
+        <button class="btn-secondary" id="dailyChallengeBtn" style="width:100%">
+          🎲 வினாடி வினா ஆரம்பி ➜
+        </button>
+      </div>
+
+      <!-- Revision Suggestion -->
+      <div class="revision-card">
+        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem">
+          <span>📋</span>
+          <strong style="font-size:0.85rem">மீள்பார்வை தேவைப்படும் பகுதி</strong>
+        </div>
+        <div style="font-size:0.85rem;margin-bottom:0.5rem" id="revisionTopic">அறிவியல்: விலங்குகளின் வகைகள்</div>
+        <button class="btn-small" style="background:var(--purple);color:white" onclick="startRevision()">🔄 மீண்டும் படி</button>
+      </div>
+
+      <!-- Start Learning Button -->
+      <button class="btn-primary" id="startLearningBtn" style="margin:0.75rem 0">
+        📚 இன்றைய கற்றலைத் தொடங்கு ➜
+      </button>
+
+      <!-- Subjects Section -->
+      <div class="section-header">
+        <span class="section-title">பாடங்கள் (Subjects)</span>
+        <span class="section-link" style="font-size:0.75rem"><span id="subjectCount">5</span> பாடங்கள்</span>
+      </div>
+
+      <div class="subject-cards" id="subjectCards">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- AI Tutor Quick Access -->
+      <div style="margin:0.75rem 0;padding:1rem;background:var(--surface-card);border:1.5px solid var(--neutral-border-light);border-radius:var(--rounded-lg);box-shadow:var(--shadow-card);display:flex;align-items:center;gap:0.75rem">
+        <span style="font-size:1.5rem">🤖</span>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:0.9rem">சந்தேகமா...?</div>
+          <div style="font-size:0.75rem;color:var(--neutral-light)">அறிவு நண்பன் - AI ஆசிரியர்</div>
+        </div>
+        <button class="btn-small" style="background:var(--secondary);color:white" onclick="navigateTo('tutor')">கேள்வி கேள் ➜</button>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: SUBJECTS ===== -->
+    <div class="screen" id="screenSubjects">
+      <div class="back-header">
+        <button class="back-btn" onclick="navigateTo('home')" aria-label="முகப்பு">←</button>
+        <span class="back-title">📚 பாடங்கள்</span>
+      </div>
+      <div class="subject-cards" id="subjectCardsFull">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: CHAPTERS ===== -->
+    <div class="screen" id="screenChapters">
+      <div class="back-header">
+        <button class="back-btn" onclick="navigateTo('subjects')" aria-label="பாடங்கள்">←</button>
+        <span class="back-title" id="chapterScreenTitle">அலகுகள்</span>
+      </div>
+      <div class="chapter-list" id="chapterList">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: LESSON ===== -->
+    <div class="screen" id="screenLesson">
+      <div class="back-header">
+        <button class="back-btn" onclick="goBackFromLesson()" aria-label="பின்">←</button>
+        <span class="back-title" id="lessonScreenTitle">பாடம்</span>
+      </div>
+      <div id="lessonBody">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: QUIZ ===== -->
+    <div class="screen" id="screenQuiz">
+      <div class="back-header">
+        <button class="back-btn" onclick="confirmExitQuiz()" aria-label="பின்">←</button>
+        <span class="back-title">📝 பயிற்சி</span>
+      </div>
+      <div id="quizBody">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: AI TUTOR ===== -->
+    <div class="screen" id="screenTutor">
+      <div class="back-header">
+        <button class="back-btn" onclick="navigateTo('home')" aria-label="முகப்பு">←</button>
+        <span class="back-title">🤖 AI ஆசிரியர்</span>
+      </div>
+
+      <!-- Subject Selection -->
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem" id="tutorSubjectPills">
+        <button class="quick-prompt-btn" onclick="tutorSelectSubject('science')" style="background:var(--primary);color:white;border-color:var(--primary)">🔬 அறிவியல்</button>
+        <button class="quick-prompt-btn" onclick="tutorSelectSubject('mathematics')">📐 கணிதம்</button>
+        <button class="quick-prompt-btn" onclick="tutorSelectSubject('tamil')">📝 தமிழ்</button>
+        <button class="quick-prompt-btn" onclick="tutorSelectSubject('english')">🔤 ஆங்கிலம்</button>
+        <button class="quick-prompt-btn" onclick="tutorSelectSubject('social-science')">🌍 சமூக அறிவியல்</button>
+      </div>
+
+      <div class="tutor-container" id="tutorChat">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div class="offline-notice">
+        ℹ️ இது அடிப்படையிலான உள்ளமைக்கப்பட்ட கற்றல் உதவியாளர் (Offline Local AI Tutor)
+      </div>
+
+      <!-- Tutor Input -->
+      <div class="tutor-input-area">
+        <input type="text" class="tutor-input" id="tutorInput" placeholder="பாடத்தின் சந்தேகங்களை கேளுங்கள்..." aria-label="கேள்வி எழுதுங்கள்">
+        <button class="tutor-send-btn" id="tutorSendBtn" aria-label="அனுப்பு">▶</button>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: PROGRESS ===== -->
+    <div class="screen" id="screenProgress">
+      <div class="back-header">
+        <button class="back-btn" onclick="navigateTo('home')" aria-label="முகப்பு">←</button>
+        <span class="back-title">📊 சாதனைகள்</span>
+      </div>
+
+      <!-- Student Progress Card -->
+      <div class="lesson-content">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem">
+          <div style="width:48px;height:48px;border-radius:50%;background:var(--primary-bg);display:flex;align-items:center;justify-content:center;font-size:1.5rem">🦉</div>
+          <div>
+            <div style="font-weight:700">இனியன் (மாணவர்)</div>
+            <div style="font-size:0.75rem;color:var(--neutral-light)">வகுப்பு 6A</div>
+          </div>
+        </div>
+
+        <div class="stats-grid" style="margin:0">
+          <div style="text-align:center;padding:0.5rem">
+            <div style="font-size:1.2rem;font-weight:800;color:var(--tertiary)" id="progTime">0</div>
+            <div style="font-size:0.7rem;color:var(--neutral-light)">நிமிடம் கற்றல்</div>
+          </div>
+          <div style="text-align:center;padding:0.5rem">
+            <div style="font-size:1.2rem;font-weight:800;color:var(--secondary)" id="progAccuracy">0%</div>
+            <div style="font-size:0.7rem;color:var(--neutral-light)">சரியான விடை</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject Progress -->
+      <div class="section-header">
+        <span class="section-title">பாடவாரி பலன் & மீள்பார்வை</span>
+      </div>
+
+      <div class="progress-chart" id="progressChart">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Badges -->
+      <div class="section-header mt-2">
+        <span class="section-title">🏆 பதக்கங்கள்</span>
+      </div>
+
+      <div class="badge-grid" id="badgeGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: PARENT/TEACHER ===== -->
+    <div class="screen" id="screenParent">
+      <div class="back-header">
+        <button class="back-btn" onclick="navigateTo('home')" aria-label="முகப்பு">←</button>
+        <span class="back-title">👨‍🏫 ஆசிரியர் / பெற்றோர்</span>
+      </div>
+
+      <!-- PIN Gate -->
+      <div id="pinGate">
+        <div class="lesson-content text-center">
+          <div style="font-size:2.5rem;margin-bottom:0.5rem">🔒</div>
+          <h3>உள்நுழைவு சரிபார்க்கப்பட்டது</h3>
+          <p class="text-sm text-muted mt-1">ஆசிரியர் & பெற்றோர் நிர்வாக பகுதி (PIN: ••••)</p>
+          <div class="pin-input-group mt-2">
+            <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" data-pin="0" aria-label="PIN digit 1">
+            <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" data-pin="1" aria-label="PIN digit 2">
+            <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" data-pin="2" aria-label="PIN digit 3">
+            <input type="password" class="pin-digit" maxlength="1" inputmode="numeric" data-pin="3" aria-label="PIN digit 4">
+          </div>
+          <p class="text-sm text-muted mt-1">இயல்பு PIN: 1234</p>
+          <button class="btn-primary mt-2" onclick="verifyPin()" style="max-width:200px;margin:0.5rem auto">🔓 செயலி</button>
+          <p id="pinError" class="text-sm" style="color:var(--error);margin-top:0.5rem;display:none">❌ தவறான PIN</p>
+        </div>
+      </div>
+
+      <!-- Teacher Dashboard (hidden until PIN verified) -->
+      <div id="teacherDashboard" style="display:none">
+        <div class="lesson-content">
+          <div style="font-size:0.8rem;color:var(--secondary);font-weight:700;margin-bottom:0.25rem">வகுப்பு 6A • மாணவர்</div>
+          <h3>இனியன் கற்றல் அறிக்கை</h3>
+          <div style="font-size:0.75rem;color:var(--neutral-light);margin-bottom:0.75rem" id="reportTimestamp"></div>
+
+          <div class="stats-grid" style="margin-bottom:0.75rem">
+            <div style="text-align:center;padding:0.5rem;background:var(--secondary-bg);border-radius:var(--rounded-md)">
+              <div style="font-weight:800;color:var(--secondary)" id="parentAccuracy">0%</div>
+              <div style="font-size:0.7rem">சரியான விடை</div>
+            </div>
+            <div style="text-align:center;padding:0.5rem;background:var(--primary-bg);border-radius:var(--rounded-md)">
+              <div style="font-weight:800;color:var(--primary)" id="parentQuestions">0</div>
+              <div style="font-size:0.7rem">மொத்தம் வினாக்கள்</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subject-wise Progress -->
+        <div class="section-header">
+          <span class="section-title">பாடவாரி பலன்</span>
+        </div>
+        <div class="progress-chart" id="parentProgress"></div>
+
+        <!-- Teacher Tools -->
+        <div class="section-header mt-2">
+          <span class="section-title">🛠️ உள்ளூர் வினா வங்கி மேலாளர்</span>
+        </div>
+
+        <div class="teacher-section">
+          <div class="teacher-card" onclick="showAddQuestion()">
+            <div class="teacher-card-title">📝 புதிய வினா சேர்க்க (Add Question)</div>
+            <div class="teacher-card-desc">பாடம் தேர்வு செய்ய, பருவம் & இயல், வினா எழுதுங்கள்</div>
+          </div>
+          <div class="teacher-card" onclick="exportJSON()">
+            <div class="teacher-card-title">📤 வினா வங்கியை JSON ஆக பதிவிறக்கு (Export JSON)</div>
+          </div>
+          <div class="teacher-card" onclick="document.getElementById('importFile').click()">
+            <div class="teacher-card-title">📥 JSON வினா வங்கியை பதிவேற்று (Import JSON)</div>
+          </div>
+          <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
+
+          <div class="teacher-card" style="border-color:var(--error)" onclick="confirmResetProgress()">
+            <div class="teacher-card-title" style="color:var(--error)">🗑️ முன்னேற்ற நிலையை மீட்டமை (Reset Progress)</div>
+            <div class="teacher-card-desc">மாணவர் இதுவரை கற்ற பதிவுகளை மீட்டமைக்கும்</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: SETTINGS ===== -->
+    <div class="screen" id="screenSettings">
+      <div class="back-header">
+        <button class="back-btn" onclick="navigateTo('home')" aria-label="முகப்பு">←</button>
+        <span class="back-title">⚙️ அமைப்புகள்</span>
+      </div>
+
+      <div class="lesson-content">
+        <div class="settings-group">
+          <div class="settings-item">
+            <div>
+              <div class="settings-label">🔊 ஒலி விளைவுகள்</div>
+              <div class="settings-desc">சரி/தவறு ஒலி</div>
+            </div>
+            <div class="toggle active" id="toggleSound" onclick="toggleSetting('sound')"></div>
+          </div>
+          <div class="settings-item">
+            <div>
+              <div class="settings-label">🗣️ உரை வாசிப்பு (TTS)</div>
+              <div class="settings-desc">கேள்விகளை வாசிக்க</div>
+            </div>
+            <div class="toggle active" id="toggleTTS" onclick="toggleSetting('tts')"></div>
+          </div>
+          <div class="settings-item">
+            <div>
+              <div class="settings-label">🌙 இருண்ட பயன்முறை</div>
+              <div class="settings-desc">கண் சோர்வு குறைக்க</div>
+            </div>
+            <div class="toggle" id="toggleDark" onclick="toggleSetting('dark')"></div>
+          </div>
+          <div class="settings-item">
+            <div>
+              <div class="settings-label">🔠 எழுத்து அளவு</div>
+              <div class="settings-desc">பெரிய / சிறிய எழுத்து</div>
+            </div>
+            <div style="display:flex;gap:0.5rem">
+              <button class="btn-small" style="background:var(--neutral-border-light)" onclick="changeFontSize(-1)">அ-</button>
+              <button class="btn-small" style="background:var(--primary);color:white" onclick="changeFontSize(1)">அ+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-content mt-2">
+        <h4>ℹ️ செயலி பற்றி</h4>
+        <p class="text-sm text-muted mt-1">
+          <strong>அறிவுக் களம் 6</strong> — தமிழ்நாடு 6ஆம் வகுப்பு மாணவர்களுக்கான இலவச கற்றல் செயலி.<br>
+          பதிப்பு: 1.0.0<br>
+          உருவாக்கம்: 2026<br><br>
+          100% தனிநபர் பாதுகாப்பு உறுதி — அனைத்து தரவுகளும் உங்கள் சாதனத்தில் மட்டுமே (Offline localStorage) சேமிக்கப்படும்.
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: ADD QUESTION (Teacher) ===== -->
+    <div class="screen" id="screenAddQuestion">
+      <div class="back-header">
+        <button class="back-btn" onclick="navigateTo('parent')" aria-label="பின்">←</button>
+        <span class="back-title">📝 புதிய வினா சேர்</span>
+      </div>
+      <div class="lesson-content">
+        <div style="margin-bottom:0.75rem">
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.3rem">பாடம் தேர்வு</label>
+          <select id="addQSubject" style="width:100%;padding:0.6rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil);font-size:0.9rem">
+            <option value="tamil">தமிழ் (Tamil)</option>
+            <option value="english">ஆங்கிலம் (English)</option>
+            <option value="mathematics">கணிதம் (Mathematics)</option>
+            <option value="science">அறிவியல் (Science)</option>
+            <option value="social-science">சமூக அறிவியல் (Social Science)</option>
+          </select>
+        </div>
+        <div style="margin-bottom:0.75rem">
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.3rem">கேள்வி</label>
+          <textarea id="addQText" rows="3" style="width:100%;padding:0.6rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil);font-size:0.9rem;resize:vertical" placeholder="கேள்வியை இங்கே எழுதுங்கள்..."></textarea>
+        </div>
+        <div style="margin-bottom:0.75rem">
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.3rem">விடைகள் (4)</label>
+          <input type="text" id="addQOpt0" placeholder="விடை அ" style="width:100%;padding:0.5rem;margin-bottom:0.3rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+          <input type="text" id="addQOpt1" placeholder="விடை ஆ" style="width:100%;padding:0.5rem;margin-bottom:0.3rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+          <input type="text" id="addQOpt2" placeholder="விடை இ" style="width:100%;padding:0.5rem;margin-bottom:0.3rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+          <input type="text" id="addQOpt3" placeholder="விடை ஈ" style="width:100%;padding:0.5rem;margin-bottom:0.3rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+        </div>
+        <div style="margin-bottom:0.75rem">
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.3rem">சரியான விடை (0-3)</label>
+          <select id="addQCorrect" style="width:100%;padding:0.6rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+            <option value="0">அ - முதல் விடை</option>
+            <option value="1">ஆ - இரண்டாம் விடை</option>
+            <option value="2">இ - மூன்றாம் விடை</option>
+            <option value="3">ஈ - நான்காம் விடை</option>
+          </select>
+        </div>
+        <div style="margin-bottom:0.75rem">
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.3rem">விளக்கம்</label>
+          <textarea id="addQExpl" rows="2" style="width:100%;padding:0.6rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil);resize:vertical" placeholder="சரியான விடையின் விளக்கம்..."></textarea>
+        </div>
+        <div style="margin-bottom:0.75rem">
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.3rem">குறிப்பு (Hint)</label>
+          <input type="text" id="addQHint" placeholder="குறிப்பு..." style="width:100%;padding:0.5rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+        </div>
+        <div style="margin-bottom:0.75rem">
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.3rem">கடினத்தன்மை</label>
+          <select id="addQDiff" style="width:100%;padding:0.6rem;border:2px solid var(--neutral-border-light);border-radius:var(--rounded-md);font-family:var(--font-tamil)">
+            <option value="1">நிலை 1 - எளிது</option>
+            <option value="2">நிலை 2 - நடுத்தரம்</option>
+            <option value="3">நிலை 3 - சவால்</option>
+          </select>
+        </div>
+        <button class="btn-primary" onclick="saveNewQuestion()">✅ வினா சேர்</button>
+      </div>
+    </div>
+
+    <!-- ===== BOTTOM NAVIGATION ===== -->
+    <nav class="bottom-nav" id="bottomNav">
+      <button class="nav-item active" onclick="navigateTo('home')" aria-label="முகப்பு">
+        <span class="nav-icon">🏠</span>
+        <span>முகப்பு</span>
+      </button>
+      <button class="nav-item" onclick="navigateTo('subjects')" aria-label="பாடங்கள்">
+        <span class="nav-icon">📚</span>
+        <span>பாடங்கள்</span>
+      </button>
+      <button class="nav-item" onclick="navigateTo('tutor')" aria-label="AI ஆசிரியர்">
+        <span class="nav-icon">🤖</span>
+        <span>AI ஆசிரியர்</span>
+      </button>
+      <button class="nav-item" onclick="navigateTo('progress')" aria-label="சாதனைகள்">
+        <span class="nav-icon">📊</span>
+        <span>சாதனைகள்</span>
+      </button>
+      <button class="nav-item" onclick="navigateTo('parent')" aria-label="பெற்றோர்">
+        <span class="nav-icon">👨‍🏫</span>
+        <span>பெற்றோர்</span>
+      </button>
+    </nav>
+
+    <!-- ===== MODALS ===== -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-content" id="modalContent">
+        <div class="modal-icon" id="modalIcon">🎉</div>
+        <div class="modal-title" id="modalTitle">சிறப்பு!</div>
+        <div class="modal-text" id="modalText">நீங்கள் சிறப்பாக செய்தீர்கள்!</div>
+        <div class="modal-actions" id="modalActions">
+          <button class="btn-primary" onclick="closeModal()">சரி 👍</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reward Popup -->
+    <div class="reward-popup" id="rewardPopup">
+      <div class="reward-text" id="rewardText">+10 ⭐</div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

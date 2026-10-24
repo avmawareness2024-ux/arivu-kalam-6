@@ -1,0 +1,271 @@
+{
+  "subject": {
+    "id": "english",
+    "name": "ஆங்கிலம்",
+    "nameEn": "English",
+    "icon": "🔤",
+    "color": "#1B56D3"
+  },
+  "chapters": [
+    {
+      "id": "eng-ch1",
+      "name": "Parts of Speech — சொல் வகைகள்",
+      "nameEn": "Parts of Speech",
+      "term": 1,
+      "lessons": [
+        {
+          "id": "eng-l1",
+          "title": "Nouns — பெயர்ச்சொற்கள்",
+          "titleEn": "Nouns",
+          "explanation": "Noun (பெயர்ச்சொல்) என்பது ஒரு நபர், இடம், பொருள் அல்லது கருத்தின் பெயர்.\n\nTypes of Nouns (வகைகள்):\n• Common Noun (பொதுப்பெயர்): boy, girl, city, book\n• Proper Noun (சிறப்புப்பெயர்): Ramu, Chennai, India — முதல் எழுத்து பெரிய எழுத்தில் (Capital letter) எழுத வேண்டும்\n• Collective Noun (கூட்டுப்பெயர்): a flock of birds, a bunch of flowers\n\nExamples:\n• The dog is running. — 'dog' என்பது noun.\n• Chennai is a big city. — 'Chennai', 'city' இரண்டும் nouns.",
+          "keyPoints": [
+            "Noun = பெயர்ச்சொல் (person, place, thing)",
+            "Common Noun = பொதுப்பெயர்",
+            "Proper Noun = சிறப்புப்பெயர் (Capital letter)",
+            "Collective Noun = கூட்டுப்பெயர்"
+          ],
+          "verified": false,
+          "verificationNote": "மாதிரி உள்ளடக்கம் — பாடநூலுடன் சரிபார்க்கவும்"
+        },
+        {
+          "id": "eng-l2",
+          "title": "Verbs — வினைச்சொற்கள்",
+          "titleEn": "Verbs",
+          "explanation": "Verb (வினைச்சொல்) என்பது ஒரு செயலைக் குறிக்கும் சொல்.\n\nExamples:\n• run (ஓடு), eat (சாப்பிடு), read (படி), write (எழுது), play (விளையாடு)\n\nTypes:\n• Action Verb: She runs fast. (ஓடுகிறாள்)\n• Helping Verb: He is playing. (விளையாடுகிறான்) — 'is' helping verb\n\nEvery sentence needs a verb!\n• I eat rice. — 'eat' = verb\n• They are studying. — 'studying' = verb, 'are' = helping verb",
+          "keyPoints": [
+            "Verb = செயலைக் குறிக்கும் சொல்",
+            "Action Verb = நேரடி செயல்",
+            "Helping Verb = is, am, are, was, were",
+            "ஒவ்வொரு வாக்கியத்திலும் verb வேண்டும்"
+          ],
+          "verified": false,
+          "verificationNote": "மாதிரி உள்ளடக்கம் — பாடநூலுடன் சரிபார்க்கவும்"
+        }
+      ],
+      "questions": [
+        {
+          "id": "eq1",
+          "type": "mcq",
+          "question": "Which of the following is a Proper Noun? (சிறப்புப் பெயர் எது?)",
+          "options": ["boy", "Chennai", "city", "book"],
+          "correctAnswer": 1,
+          "explanation": "'Chennai' is a Proper Noun because it names a specific city. சென்னை ஒரு குறிப்பிட்ட நகரத்தின் பெயர், எனவே இது Proper Noun.",
+          "hint": "Proper Noun starts with a Capital letter",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq2",
+          "type": "mcq",
+          "question": "What is a Noun? (Noun என்றால் என்ன?)",
+          "options": ["செயலைக் குறிக்கும் சொல்", "பெயரைக் குறிக்கும் சொல்", "பண்பைக் குறிக்கும் சொல்", "இணைக்கும் சொல்"],
+          "correctAnswer": 1,
+          "explanation": "Noun = பெயர்ச்சொல். Person, place, thing அல்லது idea-வின் பெயரைக் குறிக்கும்.",
+          "hint": "Name of a person, place or thing",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq3",
+          "type": "mcq",
+          "question": "'She runs fast.' — இதில் verb எது?",
+          "options": ["She", "runs", "fast", "இல்லை"],
+          "correctAnswer": 1,
+          "explanation": "'runs' என்பது verb (வினைச்சொல்). ஓடுதல் என்ற செயலைக் குறிக்கிறது.",
+          "hint": "செயலைக் குறிக்கும் சொல் எது?",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq4",
+          "type": "mcq",
+          "question": "'A flock of birds' — 'flock' என்பது என்ன வகை noun?",
+          "options": ["Common Noun", "Proper Noun", "Collective Noun", "Abstract Noun"],
+          "correctAnswer": 2,
+          "explanation": "'flock' என்பது ஒரு கூட்டத்தைக் குறிக்கிறது. எனவே Collective Noun (கூட்டுப்பெயர்).",
+          "hint": "Group of birds = கூட்டு...",
+          "difficulty": 2,
+          "verified": false
+        },
+        {
+          "id": "eq5",
+          "type": "truefalse",
+          "question": "'is' என்பது ஒரு Helping Verb — True or False?",
+          "options": ["True (சரி)", "False (தவறு)"],
+          "correctAnswer": 0,
+          "explanation": "True! 'is' என்பது Helping Verb (துணை வினை). He is playing — இதில் 'is' helping verb.",
+          "hint": "is, am, are — இவை என்ன வகை verbs?",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq6",
+          "type": "mcq",
+          "question": "'play' என்ற சொல்லின் தமிழ் பொருள் என்ன?",
+          "options": ["படிக்க", "விளையாடு", "ஓடு", "சாப்பிடு"],
+          "correctAnswer": 1,
+          "explanation": "play = விளையாடு. Example: Children play in the park. (குழந்தைகள் பூங்காவில் விளையாடுகிறார்கள்.)",
+          "hint": "Football, cricket — இவற்றில் செய்வது?",
+          "difficulty": 1,
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "eng-ch2",
+      "name": "Tenses — காலங்கள்",
+      "nameEn": "Tenses",
+      "term": 1,
+      "lessons": [
+        {
+          "id": "eng-l3",
+          "title": "Simple Present Tense — நிகழ்காலம்",
+          "titleEn": "Simple Present Tense",
+          "explanation": "Simple Present Tense (எளிய நிகழ்காலம்) — இப்போது நடக்கும் செயல் அல்லது வழக்கமான செயல்.\n\nStructure: Subject + Verb (base form)\n\nRules:\n• I/You/We/They + verb: I play, They run\n• He/She/It + verb+s/es: He plays, She runs\n\nExamples:\n• I go to school. (நான் பள்ளிக்குச் செல்கிறேன்)\n• She reads a book. (அவள் புத்தகம் படிக்கிறாள்)\n• Birds fly in the sky. (பறவைகள் வானில் பறக்கின்றன)",
+          "keyPoints": [
+            "நிகழ்காலம் = இப்போது நடக்கும் செயல்",
+            "He/She/It → verb+s (plays, reads)",
+            "I/You/We/They → verb (play, read)"
+          ],
+          "verified": false,
+          "verificationNote": "மாதிரி உள்ளடக்கம் — பாடநூலுடன் சரிபார்க்கவும்"
+        }
+      ],
+      "questions": [
+        {
+          "id": "eq7",
+          "type": "mcq",
+          "question": "'She ___ to school every day.' — Fill in the blank.",
+          "options": ["go", "goes", "going", "went"],
+          "correctAnswer": 1,
+          "explanation": "She + goes (verb+s). He/She/It-க்கு verb-உடன் 's' சேர்க்க வேண்டும்.",
+          "hint": "She → verb + s/es",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq8",
+          "type": "mcq",
+          "question": "'They ___ cricket on Sundays.' — Fill in the blank.",
+          "options": ["plays", "play", "played", "playing"],
+          "correctAnswer": 1,
+          "explanation": "They + play (base form). They-க்கு 's' சேர்க்க வேண்டாம்.",
+          "hint": "They → base form of verb",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq9",
+          "type": "mcq",
+          "question": "Simple Present Tense-ல் He/She/It-க்கு verb-உடன் என்ன சேர்க்க வேண்டும்?",
+          "options": ["ed", "ing", "s / es", "tion"],
+          "correctAnswer": 2,
+          "explanation": "He/She/It → verb + s/es. Example: He plays, She watches.",
+          "hint": "He plays, She reads — verb-ன் கடைசியில்?",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq10",
+          "type": "truefalse",
+          "question": "'I plays football.' — இந்த வாக்கியம் சரியா?",
+          "options": ["True (சரி)", "False (தவறு)"],
+          "correctAnswer": 1,
+          "explanation": "False! I + play (not plays). 'I play football.' என்பதே சரி.",
+          "hint": "I-க்கு verb+s வேண்டுமா?",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq11",
+          "type": "mcq",
+          "question": "'read' என்ற சொல்லின் தமிழ் பொருள் என்ன?",
+          "options": ["எழுது", "ஓடு", "படி", "தூங்கு"],
+          "correctAnswer": 2,
+          "explanation": "read = படி. Example: I read a story book. (நான் கதைப் புத்தகம் படிக்கிறேன்.)",
+          "hint": "Book-ஐ என்ன செய்கிறோம்?",
+          "difficulty": 1,
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "eng-ch3",
+      "name": "Vocabulary — சொற்களஞ்சியம்",
+      "nameEn": "Vocabulary & Comprehension",
+      "term": 1,
+      "lessons": [
+        {
+          "id": "eng-l4",
+          "title": "Everyday Words — அன்றாடச் சொற்கள்",
+          "titleEn": "Everyday Vocabulary",
+          "explanation": "அன்றாட வாழ்வில் பயன்படும் ஆங்கிலச் சொற்கள்:\n\n🏠 வீடு — Home:\n• Mother (அம்மா), Father (அப்பா), Brother (அண்ணன்/தம்பி)\n• Kitchen (சமையலறை), Bedroom (படுக்கையறை)\n\n🏫 பள்ளி — School:\n• Teacher (ஆசிரியர்), Student (மாணவர்)\n• Blackboard (கரும்பலகை), Chalk (சுண்ணாம்பு)\n\n🌿 இயற்கை — Nature:\n• Tree (மரம்), Flower (பூ), River (ஆறு)\n• Mountain (மலை), Rain (மழை), Sun (சூரியன்)",
+          "keyPoints": [
+            "Home words: Mother, Father, Kitchen",
+            "School words: Teacher, Student, Book",
+            "Nature words: Tree, Flower, River, Sun"
+          ],
+          "verified": false,
+          "verificationNote": "மாதிரி உள்ளடக்கம் — பாடநூலுடன் சரிபார்க்கவும்"
+        }
+      ],
+      "questions": [
+        {
+          "id": "eq12",
+          "type": "mcq",
+          "question": "'ஆசிரியர்' என்பதன் ஆங்கிலச் சொல் என்ன?",
+          "options": ["Student", "Teacher", "Doctor", "Driver"],
+          "correctAnswer": 1,
+          "explanation": "ஆசிரியர் = Teacher. A teacher teaches students in a school.",
+          "hint": "பள்ளியில் பாடம் நடத்துபவர்",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq13",
+          "type": "mcq",
+          "question": "'River' என்பதன் தமிழ் பொருள் என்ன?",
+          "options": ["மலை", "ஆறு", "கடல்", "ஏரி"],
+          "correctAnswer": 1,
+          "explanation": "River = ஆறு. Example: The river flows through the village. (ஆறு கிராமத்தின் வழியாக ஓடுகிறது.)",
+          "hint": "Cauvery, Ganges — இவை என்ன?",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq14",
+          "type": "mcq",
+          "question": "'Kitchen' என்பதன் தமிழ் பொருள் என்ன?",
+          "options": ["படுக்கையறை", "சமையலறை", "குளியலறை", "வகுப்பறை"],
+          "correctAnswer": 1,
+          "explanation": "Kitchen = சமையலறை. We cook food in the kitchen.",
+          "hint": "சமையல் செய்யும் அறை",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq15",
+          "type": "mcq",
+          "question": "'Sun' என்பதன் தமிழ் பொருள் என்ன?",
+          "options": ["நிலவு", "நட்சத்திரம்", "சூரியன்", "மேகம்"],
+          "correctAnswer": 2,
+          "explanation": "Sun = சூரியன். The Sun rises in the east. (சூரியன் கிழக்கில் உதிக்கிறது.)",
+          "hint": "காலையில் உதிக்கும் ஒளிக்கோளம்",
+          "difficulty": 1,
+          "verified": false
+        },
+        {
+          "id": "eq16",
+          "type": "truefalse",
+          "question": "'Mountain' என்பதன் தமிழ் பொருள் 'மலை' — True or False?",
+          "options": ["True (சரி)", "False (தவறு)"],
+          "correctAnswer": 0,
+          "explanation": "True! Mountain = மலை.",
+          "hint": "உயரமான நிலப்பரப்பு",
+          "difficulty": 1,
+          "verified": false
+        }
+      ]
+    }
+  ]
+}
